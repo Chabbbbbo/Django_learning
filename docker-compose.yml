@@ -1,0 +1,19 @@
+version: "3.9"
+
+
+services:
+  app:
+    build:
+      context: .
+      # .하면 현재 path 에서 도커파일을 찾으라는 뜻
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+      # 로컬 : 도커 -> 포트 연결!
+    volumes:
+      - ./app:/app
+      # 로컬 : 도커 -> 패스 맵핑!
+
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
